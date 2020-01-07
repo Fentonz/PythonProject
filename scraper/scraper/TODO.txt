@@ -1,2 +1,0 @@
- SELECT products.product_id from products GROUP BY product_id HAVING COUNT(*) =3;
-SELECT * FROM products pr1 WHERE EXISTS (SELECT 1 from products pr2 WHERE pr1.product_id = pr2.product_id AND pr1.price != pr2.price);

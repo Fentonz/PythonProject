@@ -9,7 +9,6 @@ import scrapy
 
 
 class ScraperItem(scrapy.Item):
-    # define the fields for your item here like:
     id = scrapy.Field()
     name = scrapy.Field()
     price = scrapy.Field()

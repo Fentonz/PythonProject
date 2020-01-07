@@ -12,7 +12,7 @@ class Spider1A(scrapy.Spider):
         'https://www.1a.lv/datoru_komponentes_tikla_produkti/komponentes/videokartes'
     ]
 
-    def parse(self, response):
+    def parse(self, response): 
         items = ScraperItem()
         items['shop'] = self.name
         products = response.css('section.product')
@@ -77,7 +77,7 @@ class SpiderDateks(scrapy.Spider):
             price = product.css(
                 'div.price::text').extract_first()
 
-            # get rid of jiggerish
+            # get rid of bad symbols
             price = re.sub("€", "", price)
             price = re.sub("\xa0", "", price)
             price = re.sub(" ", "", price)
@@ -124,7 +124,7 @@ class Spider220(scrapy.Spider):
             if price == None:
                 continue  # skip item because it is sold out
 
-            # get rid of jiggerish
+            # get rid of bad symbols
             price = re.sub("€", "", price)
             price = re.sub(",", ".", price)
             price = re.sub(" ", "", price)
