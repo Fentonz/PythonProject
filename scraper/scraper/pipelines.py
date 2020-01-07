@@ -23,7 +23,7 @@ class ScraperPipeline(object):
         return item
 
     def store_db(self, item):
-        self.curr.execute('INSERT INTO products(product_id,name,category,price,shop,date) VALUES (%s, %s, %s, %s, %s, %s)',
-                          (item['id'], item['name'], item['category'], item['price'], item['shop'], datetime.now()))
-        self.conn.commit()
-        # print("test")
+        # self.curr.execute('INSERT INTO products(product_id,name,category,price,shop,date) VALUES (%s, %s, %s, %s, %s, %s)',
+        #                   (item['id'], item['name'], item['category'], item['price'], item['shop'], datetime.now()))
+        # self.conn.commit()
+        print("test")

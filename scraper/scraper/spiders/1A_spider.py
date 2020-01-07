@@ -80,7 +80,7 @@ class SpiderDateks(scrapy.Spider):
             # get rid of jiggerish
             price = re.sub("€", "", price)
             price = re.sub("\xa0", "", price)
-            price = re.sub(" ", "", price)  # this is not normal whitespace
+            price = re.sub(" ", "", price)
             price = re.sub(",", ".", price)
 
             items['id'] = id
@@ -121,6 +121,9 @@ class Spider220(scrapy.Spider):
             name = product.css('img::attr(alt)').extract_first()
             price = product.css('span.price.notranslate::text').extract_first()
 
+            if price == None:
+                continue  # skip item because it is sold out
+
             # get rid of jiggerish
             price = re.sub("€", "", price)
             price = re.sub(",", ".", price)
@@ -134,6 +137,6 @@ class Spider220(scrapy.Spider):
             yield items
 
         next_page = response.css(
-            'link[rel="next"]::attr(href)').extract_first()  # we still rely on scrappy to not start from the beginning- that is not good
+            'link[rel="next"]::attr(href)').extract_first()
         if next_page is not None:
             yield response.follow(next_page, callback=self.parse)
